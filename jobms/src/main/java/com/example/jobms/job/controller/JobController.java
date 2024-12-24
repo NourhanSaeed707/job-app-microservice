@@ -26,7 +26,7 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Job> getJobById(@PathVariable Long id) {
+    public ResponseEntity<JobWithCompanyDTO> getJobById(@PathVariable Long id) {
         return new ResponseEntity<>(jobService.getJobById(id), HttpStatus.OK);
     }
 

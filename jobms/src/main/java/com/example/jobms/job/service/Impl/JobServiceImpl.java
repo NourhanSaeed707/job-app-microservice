@@ -1,6 +1,7 @@
 package com.example.jobms.job.service.Impl;
 import com.example.jobms.job.dto.JobWithCompanyDTO;
 import com.example.jobms.job.external.Company;
+import com.example.jobms.job.mapper.JobMapper;
 import com.example.jobms.job.model.Job;
 import com.example.jobms.job.repository.JobRepository;
 import com.example.jobms.job.service.JobService;
@@ -27,9 +28,8 @@ public class JobServiceImpl implements JobService {
 
     private JobWithCompanyDTO convertToDto(Job job) {
 //        RestTemplate restTemplate = new RestTemplate();
-        JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
-        jobWithCompanyDTO.setJob(job);
         Company company = restTemplate.getForObject("http://COMPANY-SERVICE:8081/companies/" + job.getCompanyId(), Company.class );
+        JobWithCompanyDTO jobWithCompanyDTO = JobMapper.mapToJobWithCompanyDto(job, company);
         jobWithCompanyDTO.setCompany(company);
         return jobWithCompanyDTO;
     }
@@ -40,8 +40,9 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Job getJobById(Long id) {
-       return jobRepository.findById(id).orElse(null);
+    public JobWithCompanyDTO getJobById(Long id) {
+        Job job = jobRepository.findById(id).orElse(null);
+        return convertToDto(job);
     }
 
     @Override
