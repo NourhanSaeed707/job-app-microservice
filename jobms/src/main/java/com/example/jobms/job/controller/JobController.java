@@ -1,4 +1,5 @@
 package com.example.jobms.job.controller;
+import com.example.jobms.job.dto.JobWithCompanyDTO;
 import com.example.jobms.job.model.Job;
 import com.example.jobms.job.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Job>> findAll() {
+    public ResponseEntity<List<JobWithCompanyDTO>> findAll() {
         return ResponseEntity.ok(jobService.findAll());
     }
 
