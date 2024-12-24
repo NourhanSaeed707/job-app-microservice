@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 public class JobServiceImpl implements JobService {
     @Autowired
     private JobRepository jobRepository;
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Override
     public List<JobWithCompanyDTO> findAll() {
@@ -24,10 +26,10 @@ public class JobServiceImpl implements JobService {
     }
 
     private JobWithCompanyDTO convertToDto(Job job) {
-        RestTemplate restTemplate = new RestTemplate();
+//        RestTemplate restTemplate = new RestTemplate();
         JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
         jobWithCompanyDTO.setJob(job);
-        Company company = restTemplate.getForObject("http://localhost:8081/companies/" + job.getCompanyId(), Company.class );
+        Company company = restTemplate.getForObject("http://COMPANY-SERVICE:8081/companies/" + job.getCompanyId(), Company.class );
         jobWithCompanyDTO.setCompany(company);
         return jobWithCompanyDTO;
     }
