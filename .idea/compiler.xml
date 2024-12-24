@@ -11,11 +11,6 @@
         <module name="jobms" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="companyms" target="17" />
-      <module name="jobms" target="17" />
-      <module name="reviewms" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
