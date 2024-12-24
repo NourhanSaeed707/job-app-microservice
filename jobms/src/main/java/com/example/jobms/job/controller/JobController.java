@@ -1,5 +1,5 @@
 package com.example.jobms.job.controller;
-import com.example.jobms.job.dto.JobWithCompanyDTO;
+import com.example.jobms.job.dto.JobDTO;
 import com.example.jobms.job.model.Job;
 import com.example.jobms.job.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping("/")
-    public ResponseEntity<List<JobWithCompanyDTO>> findAll() {
+    public ResponseEntity<List<JobDTO>> findAll() {
         return ResponseEntity.ok(jobService.findAll());
     }
 
@@ -26,7 +26,7 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<JobWithCompanyDTO> getJobById(@PathVariable Long id) {
+    public ResponseEntity<JobDTO> getJobById(@PathVariable Long id) {
         return new ResponseEntity<>(jobService.getJobById(id), HttpStatus.OK);
     }
 
