@@ -30,6 +30,8 @@ public class JobServiceImpl implements JobService {
     private CompanyClient companyClient;
     private ReviewClient reviewClient;
 
+    int attempt = 0;
+
     public JobServiceImpl(JobRepository jobRepository, CompanyClient companyClient, ReviewClient reviewClient) {
         this.jobRepository = jobRepository;
         this.companyClient = companyClient;
@@ -40,6 +42,7 @@ public class JobServiceImpl implements JobService {
 //    @CircuitBreaker(name = "companyBreaker", fallbackMethod = "companyBreakerFallback")
     @Retry(name = "companyBreaker", fallbackMethod = "companyBreakerFallback")
     public List<JobDTO> findAll() {
+        System.out.println("Attempt: " + attempt + 1);
         List<Job> jobs = jobRepository.findAll();
         List<JobDTO> jobWithCompanyDTOS = new ArrayList<>();
         return jobs.stream().map(this::convertToDto).collect(Collectors.toList());
