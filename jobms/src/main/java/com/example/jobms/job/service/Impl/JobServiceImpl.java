@@ -36,7 +36,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    @CircuitBreaker(name = "companyBreaker")
+    @CircuitBreaker(name = "companyBreaker", fallbackMethod = "companyBreakerFallback")
     public List<JobDTO> findAll() {
         List<Job> jobs = jobRepository.findAll();
         List<JobDTO> jobWithCompanyDTOS = new ArrayList<>();
