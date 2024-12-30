@@ -1,4 +1,5 @@
 package com.example.companyms.company.service.Impl;
+import com.example.companyms.company.dto.ReviewMessage;
 import com.example.companyms.company.model.Company;
 import com.example.companyms.company.repository.CompanyRepository;
 import com.example.companyms.company.service.CompanyService;
@@ -46,5 +47,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company getCompanyById(Long id) {
         return companyRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void updateCompany(ReviewMessage reviewMessage) {
+
     }
 }
