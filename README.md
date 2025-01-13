@@ -26,3 +26,8 @@
 - Security Enforcement: Implements authentication and authorization mechanisms, ensuring secure access to the system.
 - Rate Limiting: Protects services from overloading by limiting the number of requests a client can make within a specified time frame.
 
+## Getting Started
+- pull clone git url project
+- run mvn dependencies
+- run project
+
